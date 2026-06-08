@@ -67,6 +67,7 @@ import pandas as pd
 import torch
 
 import ultralytics
+from yolo import __version__
 from nn.modules import Detect, Segment
 from nn.tasks import ClassificationModel, DetectionModel, SegmentationModel
 from yolo.configs import get_config
@@ -775,7 +776,6 @@ class Exporter:
 
         # Update metadata
         pipeline.spec.specificationVersion = 5
-        from yolo import __version__
         pipeline.spec.description.metadata.versionString = f'Ultralytics YOLOv{__version__}'
         pipeline.spec.description.metadata.shortDescription = f'Ultralytics {self.pretty_name} CoreML model'
         pipeline.spec.description.metadata.author = 'Ultralytics (https://com)'

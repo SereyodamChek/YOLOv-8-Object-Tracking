@@ -19,6 +19,7 @@ import torch.nn.functional as F
 from torch.nn.parallel import DistributedDataParallel as DDP
 
 import ultralytics
+from yolo import __version__
 from yolo.utils import DEFAULT_CONFIG_DICT, DEFAULT_CONFIG_KEYS, LOGGER
 from yolo.utils.checks import git_describe
 
@@ -61,7 +62,6 @@ def DDP_model(model):
 
 def select_device(device='', batch_size=0, newline=False):
     # device = None or 'cpu' or 0 or '0' or '0,1,2,3'
-    from yolo import __version__
     ver = git_describe() or __version__  # git commit or pip package version
     s = f'Ultralytics YOLOv{ver} 🚀 Python-{platform.python_version()} torch-{torch.__version__} '
     device = str(device).strip().lower().replace('cuda:', '').replace('none', '')  # to string, 'cuda:0' to '0'
