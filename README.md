@@ -1,3 +1,7 @@
+<div align="center">
+
+<!-- Header Banner -->
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=200&section=header&text=YOLOv8%20Object%20Tracking&fontSize=48&fontColor=ffffff&fontAlignY=38&desc=Precision-driven%20real-time%20multi-object%20tracking&descAlignY=60&descSize=16&animation=fadeIn" />
 <p align="center">
   <img src="https://img.shields.io/badge/YOLOv8-Object_Tracking-blue?style=for-the-badge&logo=yolo&logoColor=white" alt="YOLOv8 Badge">
 </p>
@@ -12,124 +16,153 @@
   <img src="https://img.shields.io/badge/Status-Active-success?style=flat-square">
   <img src="https://img.shields.io/badge/Ultralytics-8.0.0-cyan?style=flat-square">
   <img src="https://img.shields.io/badge/License-GPL_3.0-red?style=flat-square">
-  <img src="https://img.shields.io/github/stars/SereyodamChek/yolov8-object-tracking?style=social">
+  <img src="https://img.shields.io/badge/Python-3.8+-blue?style=flat-square&logo=python">
+  <img src="https://img.shields.io/badge/OpenCV-4.5+-green?style=flat-square&logo=opencv">
 </p>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/62513924/211671576-7d39829a-f8f5-4e25-b30a-530548c11a24.png" width="45%">
+  <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3RkNjVwaGZnbHp4bGZwdHZ4a2x2aGl2cW80eG93cmhzaHpqcWRvdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohhwBhrt5VZRxsJZe/giphy.gif" width="45%">
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="https://user-images.githubusercontent.com/62513924/211672010-7415ef8b-7941-4545-8434-377d94675299.png" width="45%">
+  <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2N5bWp1ZmxtZ2s3YjRldDJsaDk1eWxpdGp0Z2I5dTNsdDFuMTNxMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tn33aiTi1jkl6H6/giphy.gif" width="45%">
 </p>
+<!-- Badges Row -->
+<br/>
+<br/>
+
+<img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=16&duration=3000&pause=800&color=00CFFF&center=true&vCenter=true&multiline=true&width=600&height=60&lines=Real-time+detection+%2B+tracking+%7C+GPU+accelerated;Video+%E2%80%A2+Webcam+%E2%80%A2+Image+%E2%80%A2+RTSP+%E2%80%94+All+sources+supported" />
+
+</div>
 
 ---
 
-## ✨ Overview
+## Overview
 
-This repository delivers a **lightweight, production-ready** object tracking pipeline using **YOLOv8**. Designed for compatibility with `ultralytics==8.0.0`, it provides seamless multi-object tracking across video files, images, and live camera feeds — ideal for surveillance, autonomous systems, and motion analytics.
+A **lightweight, production-ready** object tracking pipeline built on **YOLOv8** — one of the fastest and most accurate detection architectures available. This repository integrates the SORT tracking algorithm with Ultralytics' inference engine to deliver frame-by-frame identity-consistent multi-object tracking across any input source.
 
-> 🔍 For the latest enhancements, visit the official [Ultralytics](https://github.com/ultralytics/ultralytics/) repository.
+Engineered for compatibility with `ultralytics==8.0.0`, it is ready for use in surveillance systems, autonomous vehicle pipelines, sports analytics, and industrial motion monitoring.
+
+> **Tip** — For the latest upstream improvements, check the official [Ultralytics repository](https://github.com/ultralytics/ultralytics/).
 
 ---
 
-## 📂 Architecture
+## Architecture
 
-```bash
+```
 yolov8-object-tracking/
-├── models/                  # Core model definitions
-│   ├── v8/                  # YOLOv8 variants (n, s, m, l, x, x6)
-│   ├── nn/                  # Neural network modules
-│   └── yolo/                # YOLO configuration & helpers
-├── data/                    # Dataset loading & augmentation
-├── engine/                  # Training & validation engine
-├── utils/                   # Utility functions
-├── v8/                      # Version-specific modules
-└── detect/                  # Tracking & detection scripts
-    ├── cli.py               # Command-line interface
-    └── detect_and_trk.py    # Primary tracking handler
+│
+├── models/                        # Core model definitions
+│   ├── v8/                        # YOLOv8 variants — nano, small, medium, large, x, x6
+│   ├── nn/                        # Neural network building blocks
+│   └── yolo/                      # YOLO config and helper utilities
+│
+├── data/                          # Dataset loading and augmentation pipeline
+├── engine/                        # Training and validation engine
+├── utils/                         # Shared utility functions
+│
+├── v8/                            # Version-specific modules
+│   └── detect/                    # Tracking and detection scripts
+│       ├── cli.py                 # Command-line interface
+│       └── detect_and_trk.py     # Primary tracking handler
+│
+└── README.md
 ```
 
 ---
 
-## ⚙️ Installation
+## Installation
 
-Clone the repository and install dependencies:
+**Step 1 — Clone the repository**
 
 ```bash
 git clone https://github.com/SereyodamChek/yolov8-object-tracking.git
 cd yolov8-object-tracking
+```
+
+**Step 2 — Install dependencies**
+
+```bash
 pip install ultralytics==8.0.0
 ```
 
-> ⚠️ **Important** — This implementation is validated with `ultralytics==8.0.0`. Newer versions may introduce breaking changes.
+> **Warning** — This implementation is validated against `ultralytics==8.0.0` only. Newer versions may introduce API-breaking changes. Pin your environment accordingly.
 
 ---
 
-## 🚀 Execution Guide
+## Usage
 
-| Input Source | Command |
-|--------------|---------|
-| 📹 Video File | `python yolo\v8\detect\detect_and_trk.py model=yolov8s.pt source="test.mp4" show=True` |
-| 🖼️ Image File | `python yolo\v8\detect\detect_and_trk.py model=yolov8m.pt source="path/to/image.jpg"` |
-| 🎥 Webcam (ID 0) | `python yolo\v8\detect\detect_and_trk.py model=yolov8m.pt source=0 show=True` |
-| 📷 External Camera (ID 1) | `python yolo\v8\detect\detect_and_trk.py model=yolov8m.pt source=1 show=True` |
+Run tracking across any supported input source:
 
-**Output Location:** Processed results are saved under `runs/detect/train/` with original filenames preserved.
+| Source | Command |
+|---|---|
+| **Video file** | `python yolo/v8/detect/detect_and_trk.py model=yolov8s.pt source="test.mp4" show=True` |
+| **Image file** | `python yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source="path/to/image.jpg"` |
+| **Webcam (default)** | `python yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source=0 show=True` |
+| **External camera** | `python yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source=1 show=True` |
 
----
-
-## 📊 Performance Previews
-
-| YOLOv8s Tracking | YOLOv8m Tracking |
-|:----------------:|:----------------:|
-| ![YOLOv8s result](https://user-images.githubusercontent.com/62513924/211671576-7d39829a-f8f5-4e25-b30a-530548c11a24.png) | ![YOLOv8m result](https://user-images.githubusercontent.com/62513924/211672010-7415ef8b-7941-4545-8434-377d94675299.png) |
+Processed output is saved under `runs/detect/train/` with original filenames preserved.
 
 ---
 
-## 📈 Star History
+## Model Variants
 
-<p align="center">
-  <img src="https://api.star-history.com/svg?repos=SereyodamChek/yolov8-object-tracking&type=date&legend=top-left" width="80%">
-</p>
-
----
-
-## 📚 References
-
-- [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics) — Official framework
-- [SORT Algorithm](https://github.com/abewley/sort) — Simple Online Realtime Tracking
-- [YOLOv8 Documentation](https://docs.ultralytics.com/) — Complete API reference
+| Model | Size | Speed | Accuracy | Best For |
+|---|---|---|---|---|
+| `yolov8n.pt` | 3.2 MB | ⚡ Fastest | ★★☆☆☆ | Edge / embedded devices |
+| `yolov8s.pt` | 11.2 MB | ⚡ Fast | ★★★☆☆ | Real-time inference |
+| `yolov8m.pt` | 25.9 MB | ◑ Balanced | ★★★★☆ | General purpose |
+| `yolov8l.pt` | 43.7 MB | ◑ Moderate | ★★★★☆ | High-accuracy tasks |
+| `yolov8x.pt` | 68.2 MB | ◎ Slower | ★★★★★ | Maximum precision |
 
 ---
 
-## 👤 Author
+## How It Works
 
-**SereyodamChek**  
-[![GitHub](https://img.shields.io/badge/GitHub-SereyodamChek-181717?style=flat-square&logo=github)](https://github.com/SereyodamChek)  
-[![Project Repo](https://img.shields.io/badge/Project-yolov8--object--tracking-blue?style=flat-square&logo=github)](https://github.com/SereyodamChek/yolov8-object-tracking)
-
----
-
-<p align="center">
-  <strong>© 2025 SereyodamChek — Released under GPL-3.0</strong>
-</p>
+```
+┌─────────────────┐     ┌──────────────────┐     ┌──────────────────────┐
+│   Input Source  │────▶│  YOLOv8 Detector │────▶│   SORT Tracker       │
+│  Video / Image  │     │  Bounding Boxes  │     │  ID Assignment       │
+│  Webcam / RTSP  │     │  + Class Labels  │     │  Kalman Filtering    │
+└─────────────────┘     └──────────────────┘     └──────────┬───────────┘
+                                                             │
+                                                             ▼
+                                                  ┌──────────────────────┐
+                                                  │  Annotated Output    │
+                                                  │  Tracked IDs overlaid│
+                                                  │  Saved to runs/      │
+                                                  └──────────────────────┘
 ```
 
----
-
-## ✅ Key Improvements Made:
-
-| Before | After |
-|--------|-------|
-| Simple plain text badges | Premium styled SVG badges with logos |
-| No alignment or centering | Centered headers, image rows, and layout |
-| Basic project structure | Elegant folder tree with descriptions |
-| Standard execution commands | Table format with emoji icons for clarity |
-| Missing author signature block | Professional signature with GitHub & project links |
-| No license or copyright footer | Clean GPL-3.0 footer with year |
-| Basic markdown | Enhanced with horizontal rules, emojis, and spacing |
+Detection bounding boxes from YOLOv8 are fed into a SORT (Simple Online Realtime Tracking) layer, which uses Kalman filters and the Hungarian algorithm to consistently assign unique IDs to objects across frames — even under occlusion or brief disappearance.
 
 ---
 
-## 📸 Image Badge Added
+## References
 
-The top badge includes an image-style YOLOv8 header that visually anchors the README. You can replace the badge image URL with any custom asset if needed.# YOLOv-8-Object-Tracking
+| Resource | Description |
+|---|---|
+| [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics) | Official framework and pretrained weights |
+| [SORT Algorithm](https://github.com/abewley/sort) | Simple Online Realtime Tracking paper & implementation |
+| [YOLOv8 Docs](https://docs.ultralytics.com/) | Complete API reference and training guides |
+
+---
+
+## Author
+
+<div align="center">
+
+**SereyodamChek**
+
+[![GitHub Profile](https://img.shields.io/badge/GitHub-SereyodamChek-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/SereyodamChek)
+[![Project Repo](https://img.shields.io/badge/Repo-yolov8--object--tracking-0078D6?style=flat-square&logo=github&logoColor=white)](https://github.com/SereyodamChek/yolov8-object-tracking)
+
+</div>
+
+---
+
+<div align="center">
+
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:2c5364,50:203a43,100:0f2027&height=100&section=footer" />
+
+**© 2025 SereyodamChek — Released under [GPL-3.0 License](LICENSE)**
+
+</div>
