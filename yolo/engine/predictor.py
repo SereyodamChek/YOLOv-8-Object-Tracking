@@ -102,8 +102,9 @@ class BasePredictor:
     def get_annotator(self, img):
         raise NotImplementedError("get_annotator function needs to be implemented")
 
-    def get_tracker(self,img):
-        
+    def get_tracker(self, img):
+        raise NotImplementedError("get_tracker function needs to be implemented")
+
     def write_results(self, pred, batch, print_string):
         raise NotImplementedError("print_results function needs to be implemented")
 

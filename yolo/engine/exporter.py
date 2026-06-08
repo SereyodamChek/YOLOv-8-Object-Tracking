@@ -775,6 +775,7 @@ class Exporter:
 
         # Update metadata
         pipeline.spec.specificationVersion = 5
+        from yolo import __version__
         pipeline.spec.description.metadata.versionString = f'Ultralytics YOLOv{__version__}'
         pipeline.spec.description.metadata.shortDescription = f'Ultralytics {self.pretty_name} CoreML model'
         pipeline.spec.description.metadata.author = 'Ultralytics (https://com)'
