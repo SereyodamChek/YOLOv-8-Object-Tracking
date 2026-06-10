@@ -99,10 +99,12 @@ Run tracking across any supported input source:
 
 | Source | Command |
 |---|---|
-| **Video file** | `python yolo/v8/detect/detect_and_trk.py model=yolov8s.pt source="test.mp4" show=True` |
-| **Image file** | `python yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source="path/to/image.jpg"` |
-| **Webcam (default)** | `python yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source=0 show=True` |
-| **External camera** | `python yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source=1 show=True` |
+| **Video file** | `py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8s.pt source="test.mp4" show=True` |
+| **Image file** | `py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source="path/to/image.jpg"` |
+| **Webcam (default)** | `py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source=0 show=True` |
+| **External camera** | `py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source=1 show=True` |
+
+> **Note:** Use `py -3.13` to run with Python 3.13 (required for Hydra compatibility). Standard `python` uses Python 3.14 which has compatibility issues.
 
 Processed output is saved under `runs/detect/train/` with original filenames preserved.
 
