@@ -49,7 +49,14 @@ yolov8-object-tracking/
 ```
 
 ---
+**Latest Detection Result:**
+![YOLOv8m Detection](runs/detect/train5/image3.jpg)
 
+---
+**Video Detection Results:**
+- [YOLOv8m Video Detection](runs/detect/train9/video1.mp4)
+
+---
 ## ⚙️ Installation
 
 Clone the repository and install dependencies:
@@ -82,6 +89,7 @@ pip install ultralytics==8.0.0
 | YOLOv8s Tracking | YOLOv8m Tracking |
 |:----------------:|:----------------:|
 | ![YOLOv8s result](https://user-images.githubusercontent.com/62513924/211671576-7d39829a-f8f5-4e25-b30a-530548c11a24.png) | ![YOLOv8m result](https://user-images.githubusercontent.com/62513924/211672010-7415ef8b-7941-4545-8434-377d94675299.png) |
+
 
 ---
 

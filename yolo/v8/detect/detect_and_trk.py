@@ -4,6 +4,13 @@
 import hydra
 import torch
 import cv2
+
+_original_load = torch.load
+def patched_load(f, *args, **kwargs):
+    kwargs['weights_only'] = False
+    return _original_load(f, *args, **kwargs)
+torch.load = patched_load
+
 from random import randint
 from sort import *
 from ultralytics.yolo.engine.predictor import BasePredictor
