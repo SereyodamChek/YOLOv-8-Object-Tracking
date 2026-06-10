@@ -93,20 +93,198 @@ pip install ultralytics==8.0.0
 
 ---
 
-## Usage
+## 🚀 Quick Start (5 Minutes)
 
-Run tracking across any supported input source:
+### Step 1: Clone & Install
+```bash
+git clone https://github.com/SereyodamChek/YOLOv-8-Object-Tracking.git
+cd YOLOv-8-Object-Tracking
+pip install -r requirements.txt
+```
 
-| Source | Command |
-|---|---|
-| **Video file** | `py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8s.pt source="test.mp4" show=True` |
-| **Image file** | `py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source="path/to/image.jpg"` |
-| **Webcam (default)** | `py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source=0 show=True` |
-| **External camera** | `py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source=1 show=True` |
+### Step 2: Run on Sample Image
+```bash
+py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source="sample.jpg"
+```
 
-> **Note:** Use `py -3.13` to run with Python 3.13 (required for Hydra compatibility). Standard `python` uses Python 3.14 which has compatibility issues.
+### Step 3: Check Results
+Output saved to `runs/detect/train/` — open the generated image to see detections with tracking IDs.
 
-Processed output is saved under `runs/detect/train/` with original filenames preserved.
+---
+
+## 📖 Complete Tutorial
+
+### Prerequisites
+- **Python 3.13** (required for Hydra compatibility)
+- **GPU optional** (runs on CPU, slower)
+- **2GB+ free disk space** for model downloads
+- **Webcam or video file** for input
+
+### Installation with Virtual Environment (Recommended)
+
+**1. Create Python 3.13 virtual environment:**
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+**2. Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
+
+**3. Verify installation:**
+```bash
+py -3.13 -c "import torch; import cv2; print('✓ All packages installed')"
+```
+
+### Common Issues & Solutions
+
+| Issue | Solution |
+|-------|----------|
+| `ModuleNotFoundError: skimage` | `pip install scikit-image` |
+| `Python 3.14 Hydra error` | Use `py -3.13` instead of `python` |
+| `CUDA out of memory` | Use smaller model: `yolov8n.pt` instead of `yolov8x.pt` |
+| `No module: sort` | Ensure you're in project root directory |
+
+---
+
+## 📹 Usage Examples
+
+### 🎬 Video File Tracking
+```bash
+py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source="video.mp4"
+```
+**Output:** `runs/detect/train/video.mp4` (with tracking overlays)
+
+### 🖼️ Image Detection
+```bash
+py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source="image.jpg"
+```
+**Output:** `runs/detect/train/image.jpg` (with bounding boxes and IDs)
+
+### 📹 Webcam Real-Time Tracking
+```bash
+py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source=0 show=True
+```
+**Parameters:**
+- `source=0` → Default webcam
+- `source=1` → External camera (if available)
+- `show=True` → Display live preview
+
+### 🎥 Video File with Live Display
+```bash
+py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8s.pt source="video.mp4" show=True conf=0.5
+```
+
+### 🔧 Advanced Examples
+
+**High-accuracy detection (slower):**
+```bash
+py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8x.pt source="video.mp4" conf=0.6
+```
+
+**Fast detection (edge devices):**
+```bash
+py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8n.pt source="video.mp4" conf=0.4
+```
+
+**Batch process multiple videos:**
+```bash
+py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source="video1.mp4"
+py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8m.pt source="video2.mp4"
+```
+
+---
+
+## ⚙️ Parameters Explained
+
+| Parameter | Default | Description | Example |
+|-----------|---------|-------------|---------|
+| `model` | - | YOLO model file | `yolov8m.pt`, `yolov8s.pt` |
+| `source` | - | Input: image, video, webcam (0/1) | `"video.mp4"`, `0`, `"image.jpg"` |
+| `show` | False | Display live preview window | `show=True` |
+| `conf` | 0.25 | Confidence threshold (0-1) | `conf=0.5` (higher = fewer false positives) |
+| `iou` | 0.45 | IoU threshold for NMS | `iou=0.5` |
+| `imgsz` | 640 | Inference image size | `imgsz=416` (smaller = faster, less accurate) |
+| `device` | 0 | GPU device ID (0, 1...) or 'cpu' | `device=0`, `device=cpu` |
+| `line_thickness` | 2 | Bounding box line thickness | `line_thickness=3` |
+
+---
+
+## 📊 Output Files
+
+Results are saved to `runs/detect/train/` with this structure:
+
+```
+runs/detect/train/
+├── image1.jpg          # Image with detections
+├── image2.jpg
+├── video1.mp4          # Video with tracking overlay
+└── labels/             # Detection annotations (optional)
+    ├── image1.txt
+    └── image2.txt
+```
+
+**Output Format (each detection line):**
+```
+<x_center> <y_center> <width> <height> <class_id> <confidence>
+```
+
+---
+
+## 🎯 Understanding Output
+
+### Tracking IDs
+- Each detected object gets a **unique ID** (drawn in orange box)
+- IDs persist across frames for the same person/object
+- ID changes when object leaves frame and re-enters
+
+### Bounding Boxes
+- **Cyan rectangle** → Detection bounding box
+- **Orange box + ID** → Tracking identifier
+- **Lines** → Movement trajectory of tracked objects
+
+### Confidence Scores
+- Higher confidence (closer to 1.0) = more reliable detection
+- Adjust `conf` parameter to filter low-confidence detections
+
+---
+
+## 📈 Choosing the Right Model
+
+| Model | File Size | Speed | Accuracy | Best For |
+|-------|-----------|-------|----------|----------|
+| `yolov8n.pt` | 3.2 MB | ⚡⚡⚡ Fastest | ★★☆ | Edge devices, real-time (30+ FPS) |
+| `yolov8s.pt` | 11.2 MB | ⚡⚡ Fast | ★★★ | Real-time video (15-25 FPS) |
+| `yolov8m.pt` | **25.9 MB** | ⚡ Balanced | ★★★★ | **Recommended** - General purpose |
+| `yolov8l.pt` | 43.7 MB | ◑ Moderate | ★★★★ | High accuracy needed |
+| `yolov8x.pt` | 68.2 MB | ◎ Slow | ★★★★★ | Maximum precision (2-5 FPS) |
+
+**GPU Memory Requirements:**
+- `n/s` models: 2GB (runs on most GPUs)
+- `m/l` models: 4-6GB
+- `x` model: 8GB+
+
+---
+
+## 🆘 Troubleshooting
+
+### Issue: "FileNotFoundError: Model not found"
+**Solution:** Models auto-download on first use. Ensure internet connection.
+
+### Issue: "CUDA out of memory"
+**Solution:** Use smaller model or reduce `imgsz`:
+```bash
+py -3.13 yolo/v8/detect/detect_and_trk.py model=yolov8n.pt source="video.mp4" imgsz=416
+```
+
+### Issue: Slow performance
+**Solutions:**
+- Use `yolov8n.pt` instead of larger models
+- Reduce `imgsz` (640 → 416)
+- Skip `show=True` to save time
+- Use GPU: `device=0` (if available)
 
 ---
 
