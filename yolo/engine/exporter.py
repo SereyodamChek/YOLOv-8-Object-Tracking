@@ -67,6 +67,7 @@ import pandas as pd
 import torch
 
 import ultralytics
+from yolo import __version__
 from nn.modules import Detect, Segment
 from nn.tasks import ClassificationModel, DetectionModel, SegmentationModel
 from yolo.configs import get_config

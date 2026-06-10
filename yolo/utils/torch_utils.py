@@ -19,6 +19,7 @@ import torch.nn.functional as F
 from torch.nn.parallel import DistributedDataParallel as DDP
 
 import ultralytics
+from yolo import __version__
 from yolo.utils import DEFAULT_CONFIG_DICT, DEFAULT_CONFIG_KEYS, LOGGER
 from yolo.utils.checks import git_describe
 
