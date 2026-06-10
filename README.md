@@ -71,7 +71,8 @@ yolov8-object-tracking/
 ![YOLOv8m Detection](results/image3.jpg)
 
 **Video Detection Results:**
-- [YOLOv8m Video Detection](results/video1.mp4)
+- [YOLOv8m Video Detection](https://github.com/SereyodamChek/YOLOv-8-Object-Tracking/raw/main/results/video1.mp4) (Download MP4 - 6.3MB)
+- Note: GitHub doesn't preview large video files inline. Use the raw download link above.
 
 ## Installation
 
