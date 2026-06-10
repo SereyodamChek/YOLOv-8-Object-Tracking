@@ -1,0 +1,20 @@
+# Generated outputs (exclude auto-generated runs, but include curated results)
+runs/
+!results/
+*.pt
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.Python
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

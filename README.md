@@ -68,10 +68,10 @@ yolov8-object-tracking/
 
 ---
 **Latest Detection Result:**
-![YOLOv8m Detection](runs/detect/train5/image3.jpg)
+![YOLOv8m Detection](results/image3.jpg)
 
 **Video Detection Results:**
-- [YOLOv8m Video Detection](runs/detect/train9/video1.mp4)
+- [YOLOv8m Video Detection](results/video1.mp4)
 
 ## Installation
 
